@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+
+# Results files (keep directory, ignore contents)
+results/*
+!results/.gitkeep
+
+# macOS
+.DS_Store
