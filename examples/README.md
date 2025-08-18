@@ -36,6 +36,10 @@ This directory contains various PLA (Programmable Logic Array) files to test the
 - Designed to show reduction working
 - All 0-inputs produce 1, all 1-inputs produce 0
 
+### `dont_care.pla` (3 inputs, 1 output, with don't-cares)
+- Demonstrates use of `-` in outputs to indicate don't-care rows
+- Useful to showcase expansions that leverage don't-cares
+
 ## Usage
 
 ```bash
