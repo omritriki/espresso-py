@@ -2,9 +2,10 @@
 
 Educational Python reimplementation of the Espresso two-level Boolean logic minimizer.
 
-## 🚧 Work in Progress 🚧
+## Overview
+This project provides a small, readable implementation of the classic Espresso flow (expand → reduce → irredundant) for Boolean function minimization over PLA inputs. It prints the original and optimized truth tables, the Boolean expressions (sum-of-products), and compares literal counts before and after optimization.
 
-This is an educational implementation of the Espresso algorithm for Boolean function minimization. The core algorithm functions (expand, reduce, irredundant) are currently placeholders and need to be implemented.
+Focused on clarity and correctness for small PLAs; not intended for large-scale/industrial use.
 
 ## Project Structure
 
@@ -12,19 +13,20 @@ This is an educational implementation of the Espresso algorithm for Boolean func
 espresso-py/
 ├── src/
 │   ├── pla.py              # PLA data structures and parsing
-│   ├── visualization.py    # Truth table display functions
-│   └── espresso.py         # Core Espresso algorithm (WIP)
-├── examples/
-│   └── simple.pla          # Example PLA file
-├── main.py                 # Entry point
+│   ├── visualization.py    # Truth table + SOP printing and metrics
+│   └── espresso.py         # Expand/Reduce/Irredundant + simple iterative loop
+├── examples/               # Example PLA files
+├── main.py                 # CLI entry point
+├── requirements.txt        # Minimal dependencies
 └── README.md
 ```
 
-## Goals
-- Implement core Espresso loop: expand → reduce → irredundant
-- Focus on clarity and correctness, not performance
-- Support small `.pla` inputs
-- Provide clear visualization of truth tables
+## Installation
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+```
 
 ## Usage
 
@@ -36,16 +38,38 @@ python main.py examples/simple.pla
 python main.py path/to/your/file.pla
 ```
 
-## Current Status
-- ✅ PLA file parsing and data structures
-- ✅ Truth table visualization using pandas
-- ✅ Project structure and modular design
-- 🚧 Core Espresso algorithm implementation (expand, reduce, irredundant)
-- 🚧 Boolean logic optimization
+The program prints the original/optimized truth tables and SOP expressions, and a literal count comparison.
 
-## Dependencies
-- Python 3.7+
-- pandas (for truth table visualization)
+## Features
+- PLA parsing and validation
+- Truth table rendering (pandas DataFrame)
+- SOP expression printing (single and multi-output)
+- Simple Espresso-style cycle: expand → reduce → irredundant with a small iterative improvement loop
+- Literal count comparison before/after optimization
+
+## Limitations
+- Educational heuristic, not a full Espresso reimplementation
+- No explicit handling of separate on/off/don’t-care sets
+- Aimed at small inputs; no performance tuning
+
+## Example
+
+```bash
+python main.py examples/4x1_parity.pla
+```
+
+Don't-care demo (shows a clear reduction by leveraging `-` rows):
+
+```bash
+python main.py examples/dont_care.pla
+```
+
+## Requirements
+- Python 3.8+
+- pandas
+
+## License
+MIT — see `LICENSE`.
 
 ## Credits
-Based on the original C implementation of Espresso from UC Berkeley.
+Inspired by the original Espresso implementation (UC Berkeley).
